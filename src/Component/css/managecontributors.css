@@ -1,0 +1,31 @@
+.center{
+    margin-top: 40vh;
+    margin-left: 85vh;
+}
+.box-css{
+    width: 400px;
+    height: 250px;
+    padding: 30px;
+    margin-top: 40vh;
+    margin-left: 85vh;
+    border: 2px solid #ccc;
+    background-color: aliceblue;
+}
+
+.butt{
+    width: 250px;
+	height: 50px;
+    margin-top: 15px;
+    margin-left: 35px;
+    padding-left: 0px;
+	font-family: arimo;
+	font-size: 1.1rem;
+	border: none;
+	border-radius: 5px;
+	letter-spacing: 2px;
+	cursor: pointer;
+	background: #616161; 
+    background: -webkit-linear-gradient(to right, #9bc5c3, #616161);   
+    background: linear-gradient(to right, #9bc5c3, #616161);
+
+}
