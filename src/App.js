@@ -2,7 +2,6 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './Component/Home'
 import Login from './Component/Login'
-import Course from './Component/Course'
 import ViewPost from './Component/ViewPost'
 import Project from './Component/Project'
 import Notification from './Component/Notification'
@@ -13,6 +12,7 @@ import Search from './Component/Search'
 import Group from './Component/Group'
 import Admin_login from './Component/Admin_login'
 import managecontributors from './Component/managecontributors'
+import addconbtributor from './Component/addcontributor'
 
 
 
@@ -33,11 +33,11 @@ function App() {
                   <Route exact path='/profile' component={Profile}></Route>
                   <Route exact path='/editprofile' component={EditProfile}></Route>
                   <Route exact path='/search' component={Search}></Route>
-                  <Route exact path='/course/:id' component={Course}></Route>
                   <Route exact path='/message' component={Messages}></Route>
                   <Route exact path='/group/:id' component={Group}></Route>
                   <Route exact path="/Admin_login" component ={Admin_login}/>
                   <Route exact path="/managecontributors" component ={managecontributors}/>
+                  <Route exact path="/addcontributor" component={addconbtributor}/>
 
         </Switch>
       </Router>

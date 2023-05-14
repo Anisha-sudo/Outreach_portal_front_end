@@ -12,9 +12,13 @@ import base_url from "./api"
 
 
 const Home = (props)=>{
-
+console.log("in home page",props)
 const [allPost,setAllPost] = useState([])
 const [getPost,setgetPost] = useState(false)
+const [postField,setPostField] = useState("");
+const [imageAsFile, setImageAsFile] = useState('')
+const [postbtn,setpostbtn] = useState(true);
+const ref = useRef();
 let id = sessionStorage.getItem("id")
   useEffect(()=>{
 
@@ -33,13 +37,7 @@ let id = sessionStorage.getItem("id")
 
 },[props.history,id])
 
-  const [postField,setPostField] = useState("");
-
-  const [imageAsFile, setImageAsFile] = useState('')
-
-
-  const [postbtn,setpostbtn] = useState(true);
-  const ref = useRef();
+ 
 
   const fileChange = (event)=>
   {
@@ -65,7 +63,7 @@ let id = sessionStorage.getItem("id")
   }
 
 
-  const createPost=(event)=>
+  const createPost=()=>
   {
 
         // async magic goes here...
@@ -156,7 +154,7 @@ let id = sessionStorage.getItem("id")
   <div className="bg">
     <Card className="cards">
       <Card.Body>
-        <Card.Title>Create Post</Card.Title>
+        <Card.Title>Post Events</Card.Title>
         <Form.Control as="textarea" rows={3} value={postField}  onChange={postChange}/>
         <Form.File id="file1" ref={ref} onChange={fileChange} accept="image/*"/>
         <br></br>

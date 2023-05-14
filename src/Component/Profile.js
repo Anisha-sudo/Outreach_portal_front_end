@@ -11,7 +11,8 @@ const Profile=(props)=>{
   let id = sessionStorage.getItem("id")
   let key = props.location.state
   const [info,setInfo] = useState({})
-  const [courses,setCourses] = useState([])
+  console.log("keyis::",props.location.state)
+
 
 
   useEffect(()=>{
@@ -19,7 +20,7 @@ const Profile=(props)=>{
       props.history.push('/login')
     if(!key || key==id)
         key=id
-
+        console.log("key1is::",props.location.state)
       axios({
                method: 'post',
                url: base_url+'/Profile',
@@ -38,12 +39,7 @@ const Profile=(props)=>{
    }
    );
 
-   axios.get(base_url+'/getUserCourse/'+id)
-       .then((response) => {
-         setCourses(response.data)
-
-
-       });
+  
 
  },[id,props,key])
 
@@ -70,16 +66,7 @@ const Profile=(props)=>{
   <tr><td>Interest &nbsp;&nbsp;&nbsp;:&nbsp;</td><td>{info.interest}</td></tr>
   <tr><td>About &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</td><td>{info.about}</td></tr></table></div>
   </Card.Body></Card>
-<Card>
-  <Card.Body>
-    <Card.Title>Courses</Card.Title>
-    {courses.map((data)=>{
-      return <Card.Title key={data.id}><Link to={{ pathname: '/course/'+data.id  }}   >{data.name}</Link></Card.Title>
-    })}
 
-  </Card.Body>
-
-</Card>
   </div>
   </div>
 }

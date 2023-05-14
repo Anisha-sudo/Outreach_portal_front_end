@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import './css/login.css'
 import axios from "axios";
 import base_url from "./api"
-import { Button, Input, CardBody, Navbar} from 'reactstrap';
+import { Button, Input, CardBody} from 'reactstrap';
 import { Card, CardImg} from 'reactstrap';
 import img from './outreach.jpg';
 import Nav from './Nav';
@@ -11,9 +11,12 @@ import Nav from './Nav';
 
 const Login = (props)=>{
 
+   console.log("login page",props); 
+  
   useEffect(()=>{
 
   let id = sessionStorage.getItem("id")
+
   if(id)
   {
     props.history.push('/home')
@@ -25,31 +28,24 @@ const Login = (props)=>{
 
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
-  const [btn,setbtn] = useState(false)
+
   const [lgfailed,setlgfailed] = useState(false)
 
   const usernameChange = (event)=>{
     setUsername(event.target.value)
-    if(event.target.value.length>0 && password.length>0)
-      setbtn(true)
-    else {
-      setbtn(false)
-    }
+    
 
   }
   const passordChange = (event)=>{
     setPassword(event.target.value)
 
-    if(username.length>0 && event.target.value.length>0)
-      setbtn(true)
-    else
-      setbtn(false)
+  
 
 
-  }
+   }
 
-  const login=(event)=>{
-    setbtn(false)
+  const login=()=>{
+  
     axios({
             method: 'post',
             url: base_url+'/login',
@@ -64,7 +60,7 @@ const Login = (props)=>{
           props.history.push('/home')
 }, (error) => {
   console.log(error);
-  setbtn(true)
+
   setlgfailed(true);
 }
 );

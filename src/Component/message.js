@@ -10,6 +10,8 @@ import GroupMessage from './GroupMessage'
 const Messages=(props)=>{
 
   let key = props.location.state
+  console.log("hi anisha",props.location.state)
+
   let id = sessionStorage.getItem("id")
   useEffect(()=>{
     if(!id)
@@ -19,13 +21,16 @@ const Messages=(props)=>{
 
   return (<div><Header history={props.history}/>
     <Tabs defaultActiveKey="Message" id="uncontrolled-tab-example">
-  <Tab eventKey="Message" title="Message">
+
+  <Tab eventKey="Message" title="Chats">
     <SingleMessage sender={id} reciever={key}/>
   </Tab>
   <Tab eventKey="GroupMessage"  title="GroupMessage">
     <GroupMessage sender={id} history={props.history} />
   </Tab>
+  
 </Tabs>
+
     </div>)
 }
 

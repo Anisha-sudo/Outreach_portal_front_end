@@ -1,19 +1,51 @@
 import React from "react";
-import "/home/anisha/Downloads/outreach-portal-frontend-master/src/Component/css/managecontributors.css";
+import Nav from 'react-bootstrap/Nav'
+import logout from './icon/logout.png'
+import { Card, CardImg} from 'reactstrap';
+import "/home/anisha/Desktop/outreach-portal-frontend-master/src/Component/css/managecontributors.css";
+import { useHistory } from 'react-router-dom';
+import { CardBody} from 'reactstrap';
 
-const managecontributors=()=>{
+
+
+const Managecontributors=()=>{
+  const history = useHistory();
+
+    const headingStyle = {
+        textAlign: 'center'
+      }
+      const logoutCall=()=>{
+        sessionStorage.clear();
+    
+      }
+
+      const navigateadd = () => {
+        
+        history.push('/addcontributor');
+      }
+
     return  (
         <>
-        <h1 align='center' color='blue'>ADD and DELETE Contributors</h1>
-         <div class="btn-group-vertical center box-css" >
-            <div>
-            <button type="button" class="butt">Add Contributors</button>
-            </div>
-            <div>
-            <button type="button" class="butt">Delete Contributors</button>
-            </div>
-         </div>
-        </>
+        <div className="login-wrapper">
+    <Card>
+    <CardBody>
+   
+     
+     <div>
+    <h1 style={headingStyle} color='blue'>ADD Contributors</h1>
+    <button type="button" onClick={navigateadd}class="butt">Add Contributors</button>
+  </div>
+  
+<nav>
+  <Nav.Link href="/Admin_login" onClick={logoutCall} style={{ display: 'flex', alignItems: 'center' }}>
+ <img src={logout} className='icon' alt="notification" style={{ margin: '0 auto' }} />
+  </Nav.Link>
+</nav>
+
+</CardBody>
+</Card>
+</div>
+</>
     )
 }
-export default managecontributors;
+export default Managecontributors;

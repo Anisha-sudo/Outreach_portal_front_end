@@ -100,7 +100,7 @@ const Project=(props)=>{
   }
 
 
-  const createPost=(event)=>
+  const createPost=()=>
   {
 
         // async magic goes here...
@@ -214,8 +214,8 @@ const Project=(props)=>{
         }
 
 
-  const clearPost=(event)=>
-  {
+  const clearPost=()=>
+  { setTitle("")
     setPostField("")
     ref.current.value=""
     setpostbtn(true)
@@ -225,7 +225,9 @@ const Project=(props)=>{
 
 
     return (<div><Header history={props.history}/>
+   
       <div className='bg'>
+      <h1 align='center'>PROJECTS</h1>
       {role && <Card className="cards">
         <Card.Body>
           <Card.Title>Create project Post</Card.Title>

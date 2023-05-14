@@ -2,9 +2,11 @@ import React,{useState,useEffect} from 'react'
 import './css/login.css'
 import axios from "axios";
 import base_url from "./api"
-import { Button, Input, CardBody, Navbar} from 'reactstrap';
+import { Button, Input, CardBody} from 'reactstrap';
 import { Card, CardImg} from 'reactstrap';
-import img from './outreach.jpg';
+import logout from './icon/logout.png'
+import Nav from 'react-bootstrap/Nav'
+import img from './admin.png';
 
 
 
@@ -23,49 +25,50 @@ const Admin_login = (props)=>{
   },[props.history])
 
 
-  const [username,setUsername] = useState("")
-  const [password,setPassword] = useState("")
-  const [btn,setbtn] = useState(false)
-  const [lgfailed,setlgfailed] = useState(false)
+  const [username1,setUsername] = useState("")
+  const [password1,setPassword] = useState("")
+  const [lgfailed1,setlgfailed] = useState(false)
 
   const usernameChange = (event)=>{
     setUsername(event.target.value)
-    if(event.target.value.length>0 && password.length>0)
-      setbtn(true)
-    else {
-      setbtn(false)
-    }
+   
 
   }
   const passordChange = (event)=>{
     setPassword(event.target.value)
 
-    if(username.length>0 && event.target.value.length>0)
-      setbtn(true)
-    else
-      setbtn(false)
 
+
+  }
+  const logoutCall=()=>{
+    sessionStorage.clear();
 
   }
 
   const login=(event)=>{
-    setbtn(false)
+   
     axios({
             method: 'post',
             url: base_url+'/adminlogin',
             data: {
-                email: username,
-                password: password
+                userName: username1,
+                password: password1
             }
         })
         .then(
           (response) => {
-          sessionStorage.setItem("id",response.data)
-          props.history.push('/managecontributors')
+            if(response.data==="sucess") {
+              sessionStorage.setItem("id",response.data)
+              props.history.push('/managecontributors')
+          }
+          else
+          {
+              alert('Invalid Credentials');
+
+          }
 }, (error) => {
   console.log(error);
-  setbtn(true)
-  setlgfailed(true);
+ setlgfailed(true);
 }
 );
   }
@@ -74,16 +77,18 @@ const Admin_login = (props)=>{
 
   return(
     <>
-    <h1 align='center' font='bold'>Admin Login</h1>
+   
    <div className="login-wrapper">
     
     <Card>
-      <CardImg top width="70%" src={img} height="60%" alt="outreach" />
+    <h1 align='center' font='bold'>Admin Login</h1>
+      <CardImg top width="20%" src={img} height="55%" alt="outreach" />
+      
         <CardBody>
          <div>
            <Input
                 type="text"
-                value={username}
+                value={username1}
                 id="username"
                 placeholder="Username"
                 onChange={usernameChange}
@@ -92,7 +97,7 @@ const Admin_login = (props)=>{
          <div>
            <Input
                 type="password"
-                value={password}
+                value={password1}
                 id="password"
                 placeholder="Password"
                 onChange={passordChange}
@@ -101,9 +106,17 @@ const Admin_login = (props)=>{
          <div>
             <Button color="secondary" id ='login' type="button" onClick={login}>Submit</Button>{' '}
          </div>
-          { lgfailed && <span>
+          { lgfailed1 && <span>
           Invalid credentials! Try again.
           </span>}
+
+<nav>
+  
+  <Nav.Link href="/login" onClick={logoutCall} style={{ display: 'flex', alignItems: 'center' }}>
+ <img src={logout} className='icon' alt="notification" style={{ margin: '0 auto' }} />
+  </Nav.Link>
+</nav> 
+
         </CardBody>
       </Card>
      
